@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .controller 'SettingsCtrl', ($scope, User, Auth) ->
   $scope.errors = {}
   $scope.changePassword = (form) ->

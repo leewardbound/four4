@@ -3,7 +3,7 @@
 ###
 Removes server error when user updates input
 ###
-angular.module 'socket4App'
+angular.module 'four4App'
 .directive 'mongooseError', ->
   restrict: 'A'
   require: 'ngModel'

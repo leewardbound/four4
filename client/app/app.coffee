@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App', [
+angular.module 'four4App', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

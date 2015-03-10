@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .factory 'User', ($resource) ->
   $resource '/api/users/:id/:controller',
     id: '@_id'

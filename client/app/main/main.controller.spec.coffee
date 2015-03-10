@@ -3,7 +3,7 @@
 describe 'Controller: MainCtrl', ->
 
   # load the controller's module
-  beforeEach module 'socket4App' 
+  beforeEach module 'four4App' 
   beforeEach module 'socketMock' 
 
   MainCtrl = undefined

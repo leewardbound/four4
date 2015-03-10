@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .controller 'SignupCtrl', ($scope, Auth, $location, $window) ->
   $scope.user = {}
   $scope.errors = {}

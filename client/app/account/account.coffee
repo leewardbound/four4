@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .config ($routeProvider) ->
   $routeProvider
   .when '/login',

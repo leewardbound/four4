@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .factory 'Auth', ($location, $rootScope, $http, User, $cookieStore, $q) ->
   currentUser = if $cookieStore.get 'token' then User.get() else {}
 

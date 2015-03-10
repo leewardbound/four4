@@ -1,5 +1,5 @@
 {
-  "name": "socket4",
+  "name": "four4",
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {

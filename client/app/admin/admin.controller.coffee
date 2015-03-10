@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
   $http.get '/api/users'

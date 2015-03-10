@@ -2,7 +2,7 @@
 
 'use strict'
 
-angular.module 'socket4App'
+angular.module 'four4App'
 .factory 'socket', (socketFactory) ->
 
   # socket.io now auto-configures its connection when we omit a connection url
