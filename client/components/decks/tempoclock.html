@@ -1,0 +1,11 @@
+<div>
+    <a class="btn btn-info" ng-show="stage.playing" ng-click="stage.pause()">
+            <i class="fa fa-pause"></i>
+    </a>
+    <a class="btn btn-danger" ng-show="stage.playing" ng-click="stage.stop()">
+            <i class="fa fa-stop"></i>
+    </a>
+    <label for=stagetempo>Tempo</label> <input id=stagetempo name=stagetempo ng-model="stage.tempo" type=number>
+    <b>{{stage.position.measure || 1}}</b>.
+    <b>{{stage.position.part || 1}}</b>
+</div>

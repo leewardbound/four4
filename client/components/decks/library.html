@@ -1,0 +1,24 @@
+<!-- FOR LOADING AND MEMORY MANAGEMENT REFERENCE THIS 
+http://lostechies.com/derickbailey/2013/09/23/getting-audio-file-information-with-htmls-file-api-and-audio-element/
+-->
+<table class="table table-striped">
+<tr>
+  <th>Title</th>
+  <th>Path</th>
+  <th>BPM</th>
+  <th>Start</th>
+  <th>Loading</th>
+  <th>Ready</th>
+  <th ng-repeat="deck in stage.decks">Deck {{deck.name}}</th>
+</tr>
+<tr ng-class="row_color(song)" ng-repeat="(path, song) in stage.library.files">
+    <td>{{song.title}}</td>
+    <td>{{song.path}}</td>
+    <td>{{song.bpm}}</td>
+    <td>{{song.zeroBeat}}</td>
+    <td>{{song.loading}}</td>
+    <td>{{song.ready}}</td>
+    <td ng-repeat="deck in stage.decks" ng-click="deck.loadSong(song)">Load into {{deck.name}}</td>
+</tr>
+</table>
+

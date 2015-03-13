@@ -1,0 +1,25 @@
+<div class="panel panel">
+    <div class="panel-heading">
+        <h5>{{deck.song.title}}</h5>
+        <div class="pull-right">
+            <a class="btn btn-info" ng-show="deck.song.title" ng-click="deck.playing ? deck.pause() : deck.play()">
+                <i class="fa fa-pause" ng-show="deck.playing"></i>
+                <i class="fa fa-play" ng-show="!deck.playing"></i>
+            </a>
+    </div>
+    <div class="panel-body">
+        <four-waveform deck=deck />
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="i in deck.songInfo">
+            <div class="row">
+                <div class="col-xs-3">
+                    <b>{{i.title}}</b>
+                </div>
+                <div class="col-xs-9">
+                    {{i.value}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
