@@ -21,8 +21,7 @@ root.measureFloatToParts = (measure) ->
     d = measure-m
     [m, Math.floor(Math.floor(d*40)/10.0) + 1]
 
-
-
-
 root.startOfMeasure = (measure, part, bpm) ->
     (measureSize(bpm) * (measurePartToFloat(measure, part) - 1))
+
+root.aMax = Math.max.apply.bind(Math.max, Math)

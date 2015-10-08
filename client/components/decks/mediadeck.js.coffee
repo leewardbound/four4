@@ -41,7 +41,7 @@ angular.module('four4App').directive 'fourMediaDeck', ->
           }
           {
             title: 'Current BPM'
-            value: deck.song.bpm
+            value: deck.bpm
           }
           {
             title: 'Zero Beat'
@@ -56,27 +56,38 @@ angular.module('four4App').directive 'fourMediaDeck', ->
             $('audio', element).remove()
             element.append(deck.song.tag)
         deck.song = song
+        deck.bpm = $scope.stage.tempo
+        deck.playbackRate = bpmRatio(deck.song.bpm, deck.bpm)
         deck.makeInfo()
+        console.log(deck, $scope.stage.tempo, deck.song.bpm, deck.bpm)
         deck.setMeasure(1, 1)
         return
       deck.setMeasure = (measure, part) ->
           measure ||= 1
           part ||= 1
-          deck.position = {measure: measure, part: part}
           current_time = startOfMeasure(measure, part, deck.song.bpm)
+          deck.position = {measure: measure, part: part, time: current_time,
+          start_measure: deck.song.position?.start_measure,
+          started: deck.song.position?.started}
           deck.song.audio_tag.currentTime = deck.song.zeroBeat + current_time
       deck.play = () ->
         deck.playing = on
-        deck.song.audio_tag.playbackRate = bpmRatio(deck.song.bpm, $scope.stage.tempo)
+        deck.song.audio_tag.playbackRate = deck.playbackRate
+        deck.song.audio_tag.defaultPlaybackRate = deck.playbackRate
         if not deck.position
             deck.setMeasure(1, 1)
         if deck.sync
             deck._playOnMeasure = on
         else
             deck.song.audio_tag.volume = 1
+            deck.song.audio_tag.playbackRate = bpmRatio(deck.song.bpm, $scope.stage.tempo)
+            deck.song.audio_tag.defaultPlaybackRate = bpmRatio(deck.song.bpm, $scope.stage.tempo)
+            deck.position.start_measure = $scope.stage.position.measure
+            deck.position.started = $scope.stage.position.time
             deck.song.audio_tag.play()
         if !$scope.stage.playing
             $scope.stage.play()
+        deck.position.started = getTime()
       deck.pause = () ->
           deck.playing = off
           deck.song.audio_tag.pause()

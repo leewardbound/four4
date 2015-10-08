@@ -14,14 +14,33 @@ angular.module('four4App').directive 'fourWaveform', ->
     scope:
       deck: '='
     link: ($scope, element, attr) ->
-        canvas = $('canvas', element).get(0)
+        deck = $scope.deck
+        deck.canvas = canvas = $('canvas', element).get(0)
         context = canvas.getContext('2d')
-        console.log('canvas')
-        root.scope = $scope
-        root.stage = $scope.deck.stage
-        root.song = $scope.deck.song
+        deck.animate_waveform = () =>
+            deck.animating = setTimeout(() ->
+              requestAnimationFrame(deck.animate_waveform)
+            , 10)
+            if not deck.song.ready or not deck.song.analyzed
+                return
+            AC = deck.song.context
+            SR = AC.sampleRate
+            CW = deck.canvas.width
+            H=deck.canvas.height
+            half = CW/2 | 0
+            pct = (deck.song.audio_tag.currentTime / deck.song.audio_tag.duration)
+            S = pct * (deck.song.analyze_width) | 0
+            context.clearRect 0, 0, CW, H
+            a = -half
+            while a < half
+              context.fillStyle = 'hsla(200,100%,70%,0.7)'
+              context.fillRect a + half, H/2, 1, deck.song.analyzed[a + S] or 0
+              context.fillRect a + half, H/2, 1, -deck.song.analyzed[a + S] or 0
+              a++
+            context.fillStyle = 'hsla(0,0%,100%,1)'
+            context.fillRect half, 0, 1, H
+        requestAnimationFrame(deck.animate_waveform)
         root.deck = $scope.deck
-        root.canvas = $scope.canvas
         return
   }
 
